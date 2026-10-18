@@ -23,8 +23,8 @@
       body {
         margin: 0;
         min-height: 100vh;
-        display: grid;
-        place-items: center;
+        display: flex;
+        flex-direction: column;
         font-family: Arial, Helvetica, sans-serif;
         background: linear-gradient(135deg, #eef2ff, var(--bg));
         color: var(--text);
@@ -34,9 +34,46 @@
         font: inherit;
       }
 
+      .navbar {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 42px;
+        background: rgba(255, 255, 255, 0.78);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(229, 231, 235, 0.9);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      .nav-brand {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 18px;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--muted);
+        font-weight: 600;
+        transition: color 0.2s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
       .app {
         width: min(100%, 560px);
         padding: 24px;
+        margin: auto;
       }
 
       .todo-panel {
@@ -246,6 +283,18 @@
       }
 
       @media (max-width: 480px) {
+        .navbar {
+          padding: 14px 18px;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .nav-links {
+          gap: 12px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
         .todo-panel { padding: 18px; }
         .todo-form { flex-direction: column; }
         .primary-btn { width: 100%; }
@@ -253,6 +302,15 @@
     </style>
   </head>
   <body>
+    <header class="navbar">
+      <div class="nav-brand">TodoFlow</div>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#">Home</a>
+        <a href="#">Tasks</a>
+        <a href="#">Completed</a>
+      </nav>
+    </header>
+
     <main class="app">
       <section class="todo-panel">
         <h1>Todo List</h1>
